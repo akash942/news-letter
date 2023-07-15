@@ -41,37 +41,33 @@ app.post("/", function (req, res) {
   };
 
   var sc = 0;
-  const request = https.request(url, options, function(response) {
-
+  const request = https.request(url, options, function (response) {
     sc = response.statusCode;
     response.on("data", function (data) {
       console.log(JSON.parse(data));
     });
     if (sc == 200) {
-      res.sendFile(__dirname+"/success.html");
-    }
-    else{
-      res.sendFile(__dirname+"/failure.html");
+      res.sendFile(__dirname + "/success.html");
+    } else {
+      res.sendFile(__dirname + "/failure.html");
     }
   });
-
-  
 
   request.write(jsonData);
   request.end();
 
-  
-  
   // console.log(fname);
 });
 
-app.post("/failure.html", function(req, res) {
+app.post("/failure.html", function (req, res) {
   res.redirect("/");
-})
+});
 
 app.listen(process.env.PORT || 3000, function () {
   console.log("server is running on port 3000");
 });
+
+module.exports = app;
 
 // API key
 // 130c500176242b8484e37150463c7b40-us21
