@@ -10,7 +10,7 @@ const app = express();
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use("/", function (req, res) {
+app.get("/", function (req, res) {
   res.sendFile(__dirname + "/signup.html");
 });
 
@@ -37,7 +37,7 @@ app.post("/", function (req, res) {
 
   const options = {
     method: "POST",
-    auth: "akash:130c500176242b8484e37150463c7b40-us213",
+    auth: "akash:4598b012c712d04866316db00717c9c5-us21",
   };
 
   var sc = 0;
