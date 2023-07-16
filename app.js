@@ -18,7 +18,7 @@ app.post("/", function (req, res) {
   const fname = req.body.fName;
   const lname = req.body.lName;
   const email = req.body.email;
-  const url = "https://us21.api.mailchimp.com/3.0/lists/ff27c1b165";
+  const url = `https://us21.api.mailchimp.com/3.0/lists/${process.env.AUDIENCE_ID}`;
 
   const data = {
     members: [
@@ -37,7 +37,7 @@ app.post("/", function (req, res) {
 
   const options = {
     method: "POST",
-    auth: "akash:4598b012c712d04866316db00717c9c5-us21",
+    auth: `akash:${process.env.API_KEY}`,
   };
 
   var sc = 0;
@@ -68,10 +68,3 @@ app.listen(process.env.PORT || 3000, function () {
 });
 
 module.exports = app;
-
-// API key
-// 130c500176242b8484e37150463c7b40-us21
-// 130c500176242b8484e37150463c7b40-us21
-
-// audience id
-// ff27c1b165
