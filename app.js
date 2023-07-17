@@ -5,6 +5,7 @@ const https = require("https");
 const { log } = require("console");
 const { subscribe } = require("diagnostics_channel");
 const { dirname } = require("path");
+require("dotenv").config();
 const app = express();
 
 app.use(express.static("public"));
@@ -18,8 +19,11 @@ app.post("/", function (req, res) {
   const fname = req.body.fName;
   const lname = req.body.lName;
   const email = req.body.email;
-  const url = `https://us21.api.mailchimp.com/3.0/lists/${process.env.AUDIENCE_ID}`;
 
+  const apikey = process.env.API_KEY;
+  const audid = process.env.AUDIENCE_ID;
+
+  const url = `https://us21.api.mailchimp.com/3.0/lists/${audid}`;
   const data = {
     members: [
       {
@@ -37,7 +41,7 @@ app.post("/", function (req, res) {
 
   const options = {
     method: "POST",
-    auth: `akash:${process.env.API_KEY}`,
+    auth: `akash:${apikey}`,
   };
 
   var sc = 0;
